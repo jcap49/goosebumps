@@ -56,41 +56,49 @@ class Story
 		puts "" 
 		puts ""
 
-		prompt
-		response = get_player_input
+		
 
-		if response.capitalize == "Greg"
-			@greg = GoodGuyGreg.new
-			puts "Greg it is."
-
-			puts ""
-			puts "" 
-
-			puts "So you're bored. Would you like to go do some exploring?"
+		def player_choice
 
 			prompt
-			respose = get_player_input
-
-			if response.capitalize == "Yes"
-				return :haunted_house
-			else
-				puts "You just dodged a major bullet. Congratulations, your life remains normal."
-				Process.exit(1)
-			end
-
-		elsif response.capitalize == "Mickey"
-			@mickey = MickeyTheStick.new
-			puts "Mickey it is."
-			return :haunted_house
+			response = get_player_input
 			
-		elsif response.capitalize == "Joey"
-			@joey = JoeyBaggaDonuts.new
-			puts "Joey it is."
-			return :haunted_house
-		else 
-			puts "Please respond with either Greg, Mickey, or Joey."
+			if response.capitalize == "Greg"
+				puts "Greg it is."
+
+				puts ""
+				puts "" 
+
+				puts "So you're bored. Would you like to go do some exploring?"
+
+				prompt
+				response = get_player_input
+
+				if response.capitalize == "Yes"
+					return haunted_house
+				elsif response.capitalize == "No"
+					puts "You just dodged a major bullet. Congratulations, your life remains normal."
+					Process.exit(1)
+				else
+					puts "Please respond with a yes or no."
+				end
+
+			elsif response.capitalize == "Mickey"
+				puts "Mickey it is."
+				return haunted_house
+				
+			elsif response.capitalize == "Joey"
+				puts "Joey it is."
+				return haunted_house
+			else 
+				puts "Please respond with either Greg, Mickey, or Joey."
+				return player_choice
+			end
 		end
+		player_choice
 	end
+
+
 
 
 	# create various story lines
