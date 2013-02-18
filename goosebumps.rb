@@ -17,6 +17,7 @@ class Story
 		result.downcase == "y"
 	end
 
+
 	# begin story 
 	def begin!
 		puts "[Insert creepy Goosebumps soundtrack]"
@@ -103,7 +104,7 @@ class Story
 
 	# create various story lines
 
-	def haunted_house
+	def haunted_house 
 		
 		puts "Greg, Mickey, and Joey are quite bored on a Sunday morning as most puney teenagers are."
 		puts "So of course, they decide to get up to no good."
@@ -140,8 +141,9 @@ class Story
 		prompt
 		response = get_player_input
 		
+		
 		if response.capitalize == "Baseball game"
-			return :baseball_game
+			return baseball_game
 		elsif response.capitalize == "Check out the car"
 			return :car_wreck
 		else
@@ -161,7 +163,7 @@ class Story
 		puts "...Greg looks up as the fastball clocks Mickey right in his neck underneath the helmet. The crowd screams."
 		puts "Mickey's taken to the hospital immediately."
 
-		return :holy_shit_moment
+		return holy_shit_moment
 	end
 
 	def car_wreck
@@ -176,7 +178,7 @@ class Story
 		puts "Greg is just too naive to see the writing on the walls, and proclaims that 'shit just happens sometimes dude.'"
 		puts "So that leaves a decision or two to be made."
 
-		return :ending
+		return ending
 
 	end
 
@@ -188,26 +190,29 @@ class Story
 		puts ""
 		puts ""
 
-		puts "So what do you decide?"
+		puts "So what do you decide: 'camera' or 'joey'?"
 
 		prompt
 		result = get_player_input
 
-		if result.capitalize == "Return the camera."
-			puts "So Greg heads back over to the haunted house to return the camera."
-			puts "He's lurking around and hears the footseps again..."
-			puts "...and from behind the corner, out steps a rather decrepid individual."
-			puts "Greg is frozen in fear. The individual in question introduces himself as Dr Franken Freziks."
-			puts "He explains that he created the cursed camera and that it had taken many a loved one from him."
-			puts "'Unfortunately,' he says 'I have to keep you here so you don\'t escape and cause more harm."
-			puts "Dr. Franken Freziks latches onto Greg and throws him in the basement and locks the door..."
-		elsif result.capitalize == "Give it to Joey."
-			puts "So Greg hands over the camera to Joey with a certain amount of trepidation."
-			puts "And as soon as Joey has full grasp of the camera, he raises the viewfinder to his eye."
-			puts "He snaps a photo of Greg, who yells. And Joey smiles, slowly waiting for the photo to come into focus..."
-		else
-			puts "Come on man, haven't you learned to type in some proper response yet?"
-		end
+		begin 
+			if result.capitalize == "camera"
+				puts "So Greg heads back over to the haunted house to return the camera."
+				puts "He's lurking around and hears the footseps again..."
+				puts "...and from behind the corner, out steps a rather decrepid individual."
+				puts "Greg is frozen in fear. The individual in question introduces himself as Dr Franken Freziks."
+				puts "He explains that he created the cursed camera and that it had taken many a loved one from him."
+				puts "'Unfortunately,' he says 'I have to keep you here so you don\'t escape and cause more harm."
+				puts "Dr. Franken Freziks latches onto Greg and throws him in the basement and locks the door..."
+			elsif result.capitalize == "joey"
+				puts "So Greg hands over the camera to Joey with a certain amount of trepidation."
+				puts "And as soon as Joey has full grasp of the camera, he raises the viewfinder to his eye."
+				puts "He snaps a photo of Greg, who yells. And Joey smiles, slowly waiting for the photo to come into focus..."
+			else
+				puts "Come on man, haven't you learned to type in some proper response yet?"
+				redo
+			end
+		end until result.capitalize == "camera" || result.capitalize == "joey" 
 	end
 	# play again prompt
 
