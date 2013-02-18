@@ -1,7 +1,7 @@
 # create a class for abstract character
 class AbstractCharacter
 
-	averge_pocket = { keys: 20, cell_phone: 150, marbles: 15}
+	averge_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
 
 	def scream
 		puts "Ahhhhh!!!"
@@ -13,7 +13,7 @@ class AbstractCharacter
 
 	class GoodGuyGreg < AbstractCharacter
 
-		greg_pocket = { iPod: 100, topwatch: 30, lucky_charm: 10}
+		greg_pocket = { iPod: 100, topwatch: 30, lucky_charm: 10 }
 
 		def do_good
 			puts "Good Guy Greg was born with a rare inflection - the ability to do only good."
@@ -29,7 +29,7 @@ class AbstractCharacter
 
 	class MickeyTheStick < AbstractCharacter
 
-		mickey_pocket = { iPod: 200, keychain: 5, ring: 60}
+		mickey_pocket = { iPod: 200, keychain: 5, ring: 60 } 
 
 		def swing_bat
 			puts "Micky The Stick steps up to the proverbial plate and musters up some courage."
