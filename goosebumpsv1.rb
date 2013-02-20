@@ -3,6 +3,8 @@ require "./storyelement.rb"
 
 # create a class for the story
 class Story
+	attr_accessor :story_character
+
 	# define a prompt figure
 	def prompt
 		print ">"
@@ -18,11 +20,11 @@ class Story
 		result.downcase == "y"
 	end
 
-
-
 	# begin story 
 	def begin!
 		@storyelement = StoryElement.new
+		@storyelement.story = self
+		@storyelement.begin_story_elements
 		print @storyelement.welcome_message
 
 		begin 
@@ -30,7 +32,9 @@ class Story
 			name = get_player_input
 		
 			if name.capitalize == "Greg"
-				puts "Greg it is."
+				self.story_character = GoodGuyGreg.new
+				
+				puts "#{name.capitalize} it is."
 
 				puts ""
 				puts "" 
@@ -50,35 +54,43 @@ class Story
 				end
 
 			elsif name.capitalize == "Mickey"
-				puts "Mickey it is."
+
+				self.story_character = MickeyTheStick.new
+
+				puts "#{name.capitalize} it is."
 				return @storyelement.haunted_house
 				
 			elsif name.capitalize == "Joey"
-				puts "Joey it is."
+
+				puts "#{name.capitalize} it is."
+
+				self.story_character = JoeyBaggaDonuts.new
+
 				return @storyelement.haunted_house
+
+			elsif name == "super power"
+				raise ArgumentError.new('This function is not supposed to be used here! Select a name!')
 			else 
 				puts "Please respond with either Greg, Mickey, or Joey."
 			end
-		end while !name
+		end while name
+
 
 	end
 
-	# create various story lines
+	class << self
+		def get_player_input_with_allowed_values(prompt_text, allowed_values)
+			puts prompt_text
+			
+			begin
+				putc ">"
+				input = gets.chomp.downcase
+				puts "We were expecting #{allowed_values.join(' or ')}" unless allowed_values.include?(input)
+			end until allowed_values.include?(input)
 
-	# call haunted_house story element
-	
-	# call baseball_game story element
-
-
-	# call car_wreck story elemengt
-	
-
-	# call holy_shit_moment story element
-	
-
-	# call ending story element
-	
-	# play again prompt
+			return input
+		end
+	end
 
 end
 

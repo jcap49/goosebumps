@@ -2,12 +2,11 @@ require "./characters.rb"
 
 class StoryElement
 
+	attr_accessor :story
+
 	def begin_story_elements
 		
 		@characters = AbstractCharacter.new
-		@greg = GoodGuyGreg.new
-		@mickey = MickeyTheStick.new
-		@joey = JoeyBaggaDonuts.new
 
 		def prompt
 			print ">"
@@ -18,13 +17,17 @@ class StoryElement
 		end
 
 		def super_power?
-			get_player_input
-			if get_player_input == "super power" and name == "Greg"
+			if get_player_input == "super power" && @greg == true
 				do_good
-			elsif get_player_input == "super power" and name == "Mickey"
+				return true
+			elsif get_player_input == "super power" && @mickey == true
 				swing_bat
-			elsif get_player_input == "super power" and name == "Joey"
+				return true
+			elsif get_player_input == "super power" && @joey == true
 				eat_donuts
+				return true
+			else
+				return false
 			end
 		end
 
@@ -101,22 +104,15 @@ class StoryElement
 			puts ""
 			puts ""
 
-			puts "What do you feel like doing: 'baseball game' or 'check out the car'?"
+			response = Story.get_player_input_with_allowed_values("What do you feel like doing: 'baseball game' or 'check out the car'?", ['baseball game', 'check out the car', 'super power'])
 
-			
-			
-			begin 
-				prompt
-				response = get_player_input
-
-				if response.capitalize == "Baseball game"
-					return baseball_game
-				elsif response.capitalize == "Check out the car"
-					return car_wreck
-				else
-					puts "Respond with one of the two options man, come on."
-				end
-			end until response || super_power?
+			if response == "baseball game"
+				return baseball_game
+			elsif response == "check out the car"
+				return car_wreck
+			elsif response == 'super power'
+				self.story.story_character.do_super_power
+			end
 
 		end
 
@@ -131,7 +127,7 @@ class StoryElement
 			puts "...Greg looks up as the fastball clocks Mickey right in his neck underneath the helmet. The crowd screams."
 			puts "Mickey's taken to the hospital immediately."
 
-			return holy_shit_moment unless super_power?
+			holy_shit_moment unless super_power?
 		end
 
 		def car_wreck
@@ -142,7 +138,7 @@ class StoryElement
 			puts "The photo developed into a rather grisly accident with the car front in center."
 			puts "And before anyone could scream a warning, Joey's dad backed out and got t-boned by a tractor trailer."
 
-			return holy_shit_moment unless super_power?
+			holy_shit_moment unless super_power?
 		end
 
 		def holy_shit_moment
@@ -153,7 +149,7 @@ class StoryElement
 			puts "Greg is just too naive to see the writing on the walls, and proclaims that 'shit just happens sometimes dude.'"
 			puts "So that leaves a decision or two to be made."
 
-			return ending unless super_power?
+		 	ending unless super_power?
 		end
 
 		def ending
@@ -164,7 +160,7 @@ class StoryElement
 			puts ""
 			puts ""
 
-			return end_decision unless super_power?
+			end_decision unless super_power?
 		end
 
 		def end_decision 
