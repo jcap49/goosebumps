@@ -18,11 +18,11 @@ class Story
 		result.downcase == "y"
 	end
 
-	@storyelement = StoryElement.new
+
 
 	# begin story 
 	def begin!
-		
+		@storyelement = StoryElement.new
 		print @storyelement.welcome_message
 
 		begin 
