@@ -110,7 +110,7 @@ class StoryElement
 				return baseball_game
 			elsif response == "check out the car"
 				return car_wreck
-			elsif response == 'super power'
+			elsif response == "super power"
 				self.story.story_character.do_super_power
 			end
 
@@ -127,7 +127,16 @@ class StoryElement
 			puts "...Greg looks up as the fastball clocks Mickey right in his neck underneath the helmet. The crowd screams."
 			puts "Mickey's taken to the hospital immediately."
 
-			holy_shit_moment unless super_power?
+			puts ""
+			puts ""
+
+			response = Story.get_player_input_with_allowed_values("Super power time? If so, simply type 'super power' - if not, hit [enter].", ['', 'super power'])
+
+			if response == ""
+				holy_shit_moment
+			elsif response == "super power" 
+				self.story.story_character.do_super_power
+			end
 		end
 
 		def car_wreck
@@ -138,7 +147,16 @@ class StoryElement
 			puts "The photo developed into a rather grisly accident with the car front in center."
 			puts "And before anyone could scream a warning, Joey's dad backed out and got t-boned by a tractor trailer."
 
-			holy_shit_moment unless super_power?
+			puts ""
+			puts "" 
+			
+			response = Story.get_player_input_with_allowed_values("Story continues with an [enter] unless you choose to use your [super power]", ['', 'super power'])
+
+			if response == ""
+				holy_shit_moment
+			elsif response == "super power"
+				self.story.story_character.do_super_power
+			end
 		end
 
 		def holy_shit_moment
@@ -149,7 +167,13 @@ class StoryElement
 			puts "Greg is just too naive to see the writing on the walls, and proclaims that 'shit just happens sometimes dude.'"
 			puts "So that leaves a decision or two to be made."
 
-		 	ending unless super_power?
+			response = Story.get_player_input_with_allowed_values("Press [enter] to be shown what decision you have to make or use your [super power]", ['', 'super power'])
+
+			if response == ""
+				ending
+			elsif response == "super power"
+				self.story.story_character.do_super_power
+			end
 		end
 
 		def ending
@@ -160,18 +184,24 @@ class StoryElement
 			puts ""
 			puts ""
 
-			end_decision unless super_power?
+			response = Story.get_player_input_with_allowed_values("Press [enter] to be shown what decision you have to make or use your [super power]", ['', 'super power'])
+			
+			if response == ""
+				end_decision
+			elsif response == "super power"
+				self.story.story_character.do_super_power
+			end
 		end
 
 		def end_decision 
 
-			puts "So what do you decide: 'camera' or 'joey'?"
+			puts 
 
 			prompt
-			result = get_player_input
+			response = Story.get_player_input_with_allowed_values("So what do you decide: [camera] or [joey]? Remember, you've still got your super power left.", ['camera', 'joey', 'super power'])
 			
 			begin	
-				if result.capitalize == "Camera"
+				if response == "camera"
 					puts "So Greg heads back over to the haunted house to return the camera."
 					puts "He's lurking around and hears the footseps again..."
 					puts "...and from behind the corner, out steps a rather decrepid individual."
@@ -185,7 +215,7 @@ class StoryElement
 
 					puts "The end."
 				
-				elsif result.capitalize == "Joey"
+				elsif response == "joey"
 					puts "So Greg hands over the camera to Joey with a certain amount of trepidation."
 					puts "And as soon as Joey has full grasp of the camera, he raises the viewfinder to his eye."
 					puts "He snaps a photo of Greg, who yells. And Joey smiles, slowly waiting for the photo to come into focus..."
@@ -195,11 +225,10 @@ class StoryElement
 
 					puts "The end."
 					
-				else
-					puts "Come on man, haven't you learned to type in some proper response yet?"
-					return end_decision
-				end	
-			end until result || super_power?
+				elsif response == "super power"
+					self.story.story_character.do_super_power
+				end
+			end until response
 		end
 	end
 end

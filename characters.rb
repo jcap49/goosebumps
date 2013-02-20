@@ -3,17 +3,17 @@ class AbstractCharacter
 
 	average_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
 
-	def scream
-		puts "Ahhhhh!!!"
+	def initialize
+		@ghost_pocket = Hash.new
 	end
 
-	def cry
-		puts "#{AbstractCharacter} begins to cry loudly..."
+	def do_super_power		
 	end
+end
 
-	class GoodGuyGreg < AbstractCharacter
+class GoodGuyGreg < AbstractCharacter
 
-		greg_pocket = { iPod: 100, topwatch: 30, lucky_charm: 10 }
+		greg_pocket = { iPod: 100, stopwatch: 30, lucky_charm: 10 }
 
 		def do_good
 			puts "Good Guy Greg was born with a rare inflection - the ability to do only good."
@@ -25,9 +25,13 @@ class AbstractCharacter
 			Process.exit(1)
 		end
 
-	end
+		def do_super_power
+			do_good
+		end
 
-	class MickeyTheStick < AbstractCharacter
+end
+
+class MickeyTheStick < AbstractCharacter
 
 		mickey_pocket = { iPod: 200, keychain: 5, ring: 60 } 
 
@@ -40,12 +44,16 @@ class AbstractCharacter
 			puts "The End."
 			Process.exit(1)
 		end
-	
-	end
 
-	class JoeyBaggaDonuts < AbstractCharacter
+		def do_super_power
+			swing_bat
+		end
+	
+end
+
+class JoeyBaggaDonuts < AbstractCharacter
 		
-		joey_pocket = { zune: 150, pog_collection: 45, donuts: 10 }
+	joey_pocket = { zune: 150, pog_collection: 45, donuts: 10 }
 
 		def eat_donuts
 			puts "Joey Bagga Donuts is only good at one thing: eating donuts."
@@ -56,7 +64,11 @@ class AbstractCharacter
 			Process.exit(1)
 		end
 
-	end
+		def do_super_power
+			eat_donuts
+		end
+
+
 
 end
 
