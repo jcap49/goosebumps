@@ -1,7 +1,7 @@
 # create a class for abstract character
 class AbstractCharacter
 
-	averge_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
+	average_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
 
 	def scream
 		puts "Ahhhhh!!!"
@@ -53,6 +53,7 @@ class AbstractCharacter
 			puts "He closes his eyes, eats said donut, and wishes for things to change."
 			puts "And poof - life returns to normal."
 			puts "The End."
+			Process.exit(1)
 		end
 
 	end
