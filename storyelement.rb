@@ -1,5 +1,14 @@
 class StoryElement
 
+	def prompt
+		print ">"
+	end
+
+	def get_player_input
+		gets.chomp()
+	end
+
+	
 
 	def welcome_message
 		puts "[Insert creepy Goosebumps soundtrack]"
@@ -33,6 +42,8 @@ class StoryElement
 
 		puts ""
 		puts ""
+
+		puts "Which character would you like to choose? Greg, Mickey, or Joey?"
 	end
 
 	def haunted_house 
@@ -69,17 +80,20 @@ class StoryElement
 
 		puts "What do you feel like doing: 'baseball game' or 'check out the car'?"
 
-		prompt
-		response = get_player_input
 		
 		
-		if response.capitalize == "Baseball game"
-			return baseball_game
-		elsif response.capitalize == "Check out the car"
-			return car_wreck
-		else
-			puts "Respond with one of the two options man, come on."
-		end
+		begin 
+			prompt
+			response = get_player_input
+
+			if response.capitalize == "Baseball game"
+				return baseball_game
+			elsif response.capitalize == "Check out the car"
+				return car_wreck
+			else
+				puts "Respond with one of the two options man, come on."
+			end
+		end while response
 
 	end
 
@@ -126,41 +140,42 @@ class StoryElement
 		
 		puts ""
 		puts ""
+	end
 
-		def end_decision 
+	def end_decision 
 
-			puts "So what do you decide: 'camera' or 'joey'?"
+		puts "So what do you decide: 'camera' or 'joey'?"
 
-			prompt
-			result = get_player_input
+		prompt
+		result = get_player_input
+			
+		if result.capitalize == "Camera"
+			puts "So Greg heads back over to the haunted house to return the camera."
+			puts "He's lurking around and hears the footseps again..."
+			puts "...and from behind the corner, out steps a rather decrepid individual."
+			puts "Greg is frozen in fear. The individual in question introduces himself as Dr Franken Freziks."
+			puts "He explains that he created the cursed camera and that it had taken many a loved one from him."
+			puts "'Unfortunately,' he says 'I have to keep you here so you don\'t escape and cause more harm."
+			puts "Dr. Franken Freziks latches onto Greg and throws him in the basement and locks the door..."
+			
+			puts ""
+			puts ""
 
-			if result.capitalize == "Camera"
-				puts "So Greg heads back over to the haunted house to return the camera."
-				puts "He's lurking around and hears the footseps again..."
-				puts "...and from behind the corner, out steps a rather decrepid individual."
-				puts "Greg is frozen in fear. The individual in question introduces himself as Dr Franken Freziks."
-				puts "He explains that he created the cursed camera and that it had taken many a loved one from him."
-				puts "'Unfortunately,' he says 'I have to keep you here so you don\'t escape and cause more harm."
-				puts "Dr. Franken Freziks latches onto Greg and throws him in the basement and locks the door..."
+			puts "The end."
+		
+		elsif result.capitalize == "Joey"
+			puts "So Greg hands over the camera to Joey with a certain amount of trepidation."
+			puts "And as soon as Joey has full grasp of the camera, he raises the viewfinder to his eye."
+			puts "He snaps a photo of Greg, who yells. And Joey smiles, slowly waiting for the photo to come into focus..."
 
-				puts ""
-				puts ""
+			puts ""
+			puts ""
 
-				puts "The end."
-			elsif result.capitalize == "Joey"
-				puts "So Greg hands over the camera to Joey with a certain amount of trepidation."
-				puts "And as soon as Joey has full grasp of the camera, he raises the viewfinder to his eye."
-				puts "He snaps a photo of Greg, who yells. And Joey smiles, slowly waiting for the photo to come into focus..."
-
-				puts ""
-				puts ""
-
-				puts "The end."
-			else
-				puts "Come on man, haven't you learned to type in some proper response yet?"
-				return end_decision
-			end
-		end
-		end_decision
+			puts "The end."
+			
+		else
+			puts "Come on man, haven't you learned to type in some proper response yet?"
+			return end_decision
+		end	
 	end
 end
