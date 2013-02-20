@@ -140,6 +140,8 @@ class StoryElement
 		
 		puts ""
 		puts ""
+
+		return end_decision
 	end
 
 	def end_decision 
