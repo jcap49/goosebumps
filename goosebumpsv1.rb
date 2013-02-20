@@ -1,4 +1,4 @@
-require "./character.rb"
+require "./characters.rb"
 
 # create a class for the story
 class Story
@@ -55,8 +55,6 @@ class Story
 		begin 
 			prompt
 			name = get_player_input
-		
-			get_player_input.inspect
 		
 			if name.capitalize == "Greg"
 				puts "Greg it is."
