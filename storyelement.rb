@@ -1,7 +1,5 @@
 class StoryElement
 
-	def initialize
-		
 
 	def welcome_message
 		puts "[Insert creepy Goosebumps soundtrack]"
