@@ -3,11 +3,8 @@ require "./characters.rb"
 class StoryElement
 
 	attr_accessor :story
-	attr_accessor :characters
 
 	def begin_story_elements
-		
-		@characters = AbstractCharacter.new
 
 		def prompt
 			print ">"
@@ -90,11 +87,20 @@ class StoryElement
 			puts ""
 			puts ""
 
-			puts "#{Story.name?} has lost some items from his pocket. He's missing:"
-
+			print "#{Story.name?} originally had "
+			self.story.story_character.show_pocket
 
 			puts ""
 			puts ""
+
+		
+			print "But for some reason #{Story.name?}now only has "
+			self.story.story_character.show_pocket
+
+			puts ""
+			puts ""
+
+			puts "Mysterious."
 
 			response = Story.get_player_input_with_allowed_values("What do you feel like doing: 'baseball game' or 'check out the car'?", ['baseball game', 'check out the car', 'super power'])
 

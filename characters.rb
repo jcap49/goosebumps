@@ -1,25 +1,26 @@
 # create a class for abstract character
 class AbstractCharacter
 
-	@@average_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
+	@@average_pocket = { dimes: 20, pennies: 150, marbles: 15 }
 
 	attr_accessor :pocket
 
 	def initialize
-		@ghost_pocket = Hash.new
-
 		@pocket = @@average_pocket
 	end
 
 	def do_super_power		
 	end
 
-	def steal(pocket)
-		pocket.each do |thing,qty|
-			if @ghost_pocket.has_key?(thing)
-				@pocket(thing) -= qty
-			else	
-	end
+	# ghost needs to identify hash of character's pocket contents
+	# ghost needs to decrease quantity of each item in pocket to zero.
+	# this happens once per turn
+
+	#def steal(pocket)
+	#	pocket.each do |thing,qty|
+	#		pocket(qty) == 0
+	#	end
+	#end
 
 	def add_to_pocket(hash_of_pocket_contents)
 		hash_of_pocket_contents.each do |thing,qty|
@@ -31,11 +32,15 @@ class AbstractCharacter
 		end
 	end
 
+	def show_character_pocket(pocket)
+		pocket.each {|thing, qty| print "#{qty} #{thing}, "}
+		#pocket.values.last {|thing, qty| print " and #{qty} #{thing}."}
+	end
 end
 
 class GoodGuyGreg < AbstractCharacter
 
-		@@greg_pocket = { ipod: 100, stopwatch: 30, lucky_charm: 10, marbles: 5 }
+		@@greg_pocket = { nickels: 100, "half dollars" => 30, "lucky charms" => 10, marbles: 5 }
 
 		def initialize
 			super
@@ -55,11 +60,25 @@ class GoodGuyGreg < AbstractCharacter
 		def do_super_power
 			do_good
 		end
+
+		def greg_stolen
+			steal(@@greg_pocket)
+		end
+
+		def show_pocket
+			add_to_pocket(@@greg_pocket)
+			show_character_pocket(@@greg_pocket)
+		end
+
+		#def stolen?
+		#	steal(@@greg_pocket)
+		#end
+
 end
 
 class MickeyTheStick < AbstractCharacter
 
-		@@mickey_pocket = { iPod: 200, keychain: 5, ring: 60 } 
+	@@mickey_pocket = { "tootsie rolls" => 200, keychains: 5, rings: 60 } 
 		
 		def initialize
 			super
@@ -80,11 +99,19 @@ class MickeyTheStick < AbstractCharacter
 			swing_bat
 		end
 
+		def mickey_stolen
+			steal(@@mickey_pocket)
+		end
+
+		def show_pocket
+			show_character_pocket(@@mickey_pocket)
+		end
+
 end
 
 class JoeyBaggaDonuts < AbstractCharacter
 		
-	@@joey_pocket = { zune: 150, pog_collection: 45, donuts: 10 }
+	@@joey_pocket = { widgets: 150, pogs: 45, donuts: 10 }
 		
 		def initialize
 			super
@@ -103,6 +130,16 @@ class JoeyBaggaDonuts < AbstractCharacter
 		def do_super_power
 			eat_donuts
 		end
+
+		def joey_stolen
+			steal(@@joey_stolen)
+		end
+
+		def show_pocket
+			show_character_pocket(@@joey_pocket)
+		end
+
 end
+
 
 
