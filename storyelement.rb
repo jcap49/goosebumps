@@ -88,12 +88,12 @@ class StoryElement
 			puts ""
 
 			print "#{Story.name?} originally had "
-			self.story.story_character.show_pocket
+			print self.story.story_character.show_pocket
 
 			puts ""
 			puts ""
 
-		
+
 			print "But for some reason #{Story.name?}now only has "
 			self.story.story_character.show_pocket
 

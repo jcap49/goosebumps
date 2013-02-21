@@ -32,9 +32,8 @@ class AbstractCharacter
 		end
 	end
 
-	def show_character_pocket(pocket)
-		pocket.each {|thing, qty| print "#{qty} #{thing}, "}
-		#pocket.values.last {|thing, qty| print " and #{qty} #{thing}."}
+	def show_pocket
+		@pocket.to_a.collect {|arr| "#{arr[1]} #{arr[0]}" }.to_sentence
 	end
 end
 
@@ -65,10 +64,7 @@ class GoodGuyGreg < AbstractCharacter
 			steal(@@greg_pocket)
 		end
 
-		def show_pocket
-			add_to_pocket(@@greg_pocket)
-			show_character_pocket(@@greg_pocket)
-		end
+	
 
 		#def stolen?
 		#	steal(@@greg_pocket)
