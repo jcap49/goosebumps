@@ -3,6 +3,7 @@ require "./characters.rb"
 class StoryElement
 
 	attr_accessor :story
+	attr_accessor :characters
 
 	def begin_story_elements
 		
@@ -14,21 +15,6 @@ class StoryElement
 
 		def get_player_input
 			gets.chomp()
-		end
-
-		def super_power?
-			if get_player_input == "super power" && @greg == true
-				do_good
-				return true
-			elsif get_player_input == "super power" && @mickey == true
-				swing_bat
-				return true
-			elsif get_player_input == "super power" && @joey == true
-				eat_donuts
-				return true
-			else
-				return false
-			end
 		end
 
 		def welcome_message
@@ -104,8 +90,11 @@ class StoryElement
 			puts ""
 			puts ""
 
-			puts "#{name} has lost some items from his pocket. He's missing:"
-			self.story.story_character.show_pocket
+			puts "#{Story.name?} has lost some items from his pocket. He's missing:"
+
+
+			puts ""
+			puts ""
 
 			response = Story.get_player_input_with_allowed_values("What do you feel like doing: 'baseball game' or 'check out the car'?", ['baseball game', 'check out the car', 'super power'])
 
