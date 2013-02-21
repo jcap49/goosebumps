@@ -16,11 +16,11 @@ class AbstractCharacter
 	# ghost needs to decrease quantity of each item in pocket to zero.
 	# this happens once per turn
 
-	#def steal(pocket)
-	#	pocket.each do |thing,qty|
-	#		pocket(qty) == 0
-	#	end
-	#end
+	def steal(pocket)
+		pocket.each do |thing,qty|
+			pocket(qty) == 0
+		end
+	end
 
 	def add_to_pocket(hash_of_pocket_contents)
 		hash_of_pocket_contents.each do |thing,qty|
@@ -59,17 +59,6 @@ class GoodGuyGreg < AbstractCharacter
 		def do_super_power
 			do_good
 		end
-
-		def greg_stolen
-			steal(@@greg_pocket)
-		end
-
-	
-
-		#def stolen?
-		#	steal(@@greg_pocket)
-		#end
-
 end
 
 class MickeyTheStick < AbstractCharacter
@@ -94,15 +83,6 @@ class MickeyTheStick < AbstractCharacter
 		def do_super_power
 			swing_bat
 		end
-
-		def mickey_stolen
-			steal(@@mickey_pocket)
-		end
-
-		def show_pocket
-			show_character_pocket(@@mickey_pocket)
-		end
-
 end
 
 class JoeyBaggaDonuts < AbstractCharacter
@@ -126,15 +106,6 @@ class JoeyBaggaDonuts < AbstractCharacter
 		def do_super_power
 			eat_donuts
 		end
-
-		def joey_stolen
-			steal(@@joey_stolen)
-		end
-
-		def show_pocket
-			show_character_pocket(@@joey_pocket)
-		end
-
 end
 
 
