@@ -2,18 +2,32 @@
 class AbstractCharacter
 
 	average_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
+	@average_pocket = average_pocket
 
 	def initialize
 		@ghost_pocket = Hash.new
 	end
 
-	def do_super_power		
+	# how would i write a method to add XYZ character's indiv pocket to the average pocket?	
+	def add_pockets(pocket)
+		pocket.merge(average_pocket)
 	end
+
+	def do_super_power		
+	
+	end
+
+	def steal
+
+	end
+
 end
 
 class GoodGuyGreg < AbstractCharacter
 
-		greg_pocket = { iPod: 100, stopwatch: 30, lucky_charm: 10 }
+		greg_pocket = { ipod: 100, stopwatch: 30, lucky_charm: 10 }
+		add_pockets(greg_pocket)
+
 
 		def do_good
 			puts "Good Guy Greg was born with a rare inflection - the ability to do only good."
@@ -29,11 +43,21 @@ class GoodGuyGreg < AbstractCharacter
 			do_good
 		end
 
+		def steal_from_greg_pocket
+			greg_pocket.each do |item|
+				1.times (item).inject(ghost_pocket)
+			end
+		end
+
+		def steal
+			steal_from_greg_pocket
+		end
 end
 
 class MickeyTheStick < AbstractCharacter
 
 		mickey_pocket = { iPod: 200, keychain: 5, ring: 60 } 
+		add_pockets(mickey_pocket)
 
 		def swing_bat
 			puts "Micky The Stick steps up to the proverbial plate and musters up some courage."
@@ -48,12 +72,22 @@ class MickeyTheStick < AbstractCharacter
 		def do_super_power
 			swing_bat
 		end
-	
+
+		def steal_from_mickey_pocket
+			mickey_pocket.each do |item|
+				1.times (item).inject(ghost_pocket)
+			end
+		end
+
+		def steal
+			steal_from_mickey_pocket
+		end
 end
 
 class JoeyBaggaDonuts < AbstractCharacter
 		
 	joey_pocket = { zune: 150, pog_collection: 45, donuts: 10 }
+	add_pockets(joey_pocket)
 
 		def eat_donuts
 			puts "Joey Bagga Donuts is only good at one thing: eating donuts."
@@ -68,8 +102,15 @@ class JoeyBaggaDonuts < AbstractCharacter
 			eat_donuts
 		end
 
+		def steal_from_joey_pocket
+			joey_pocket.each do |item|
+				1. times (item).inject(ghost_pocket)
+			end
+		end
 
-
+		def steal
+			steal_from_joey_pocket
+		end
 end
 
 
