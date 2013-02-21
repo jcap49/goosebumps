@@ -14,8 +14,8 @@ class AbstractCharacter
 	def do_super_power		
 	end
 
-	def steal(hash_of_pocket_contents)
-		hash_of_pocket_contents.each do |thing,qty|
+	def steal(pocket)
+		pocket.each do |thing,qty|
 			if @ghost_pocket.has_key?(thing)
 				@pocket(thing) -= qty
 			else	

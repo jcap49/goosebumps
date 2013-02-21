@@ -34,7 +34,9 @@ class Story
 			if name.capitalize == "Greg"
 				self.story_character = GoodGuyGreg.new
 				
+				
 				puts "#{name.capitalize} it is."
+				
 
 				puts ""
 				puts "" 

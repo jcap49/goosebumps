@@ -104,6 +104,9 @@ class StoryElement
 			puts ""
 			puts ""
 
+			puts "#{name} has lost some items from his pocket. He's missing:"
+			self.story.story_character.show_pocket
+
 			response = Story.get_player_input_with_allowed_values("What do you feel like doing: 'baseball game' or 'check out the car'?", ['baseball game', 'check out the car', 'super power'])
 
 			if response == "baseball game"
@@ -129,6 +132,8 @@ class StoryElement
 
 			puts ""
 			puts ""
+
+			puts "And #{name} says hi"
 
 			response = Story.get_player_input_with_allowed_values("Super power time? If so, simply type 'super power' - if not, hit [enter].", ['', 'super power'])
 
