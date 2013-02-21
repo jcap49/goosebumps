@@ -1,33 +1,46 @@
 # create a class for abstract character
 class AbstractCharacter
 
-	average_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
-	@average_pocket = average_pocket
+	@@average_pocket = { keys: 20, cell_phone: 150, marbles: 15 }
+
+	attr_accessor :pocket
 
 	def initialize
 		@ghost_pocket = Hash.new
-	end
 
-	# how would i write a method to add XYZ character's indiv pocket to the average pocket?	
-	def add_pockets(pocket)
-		pocket.merge(average_pocket)
+		@pocket = @@average_pocket
 	end
 
 	def do_super_power		
-	
 	end
 
-	def steal
+	def steal(hash_of_pocket_contents)
+		hash_of_pocket_contents.each do |thing,qty|
+			if @ghost_pocket.has_key?(thing)
+				@pocket(thing) -= qty
+			else	
+	end
 
+	def add_to_pocket(hash_of_pocket_contents)
+		hash_of_pocket_contents.each do |thing,qty|
+			if @pocket.has_key?(thing)
+				@pocket[thing] += qty
+			else
+				@pocket[thing] = qty
+			end
+		end
 	end
 
 end
 
 class GoodGuyGreg < AbstractCharacter
 
-		greg_pocket = { ipod: 100, stopwatch: 30, lucky_charm: 10 }
-		add_pockets(greg_pocket)
+		@@greg_pocket = { ipod: 100, stopwatch: 30, lucky_charm: 10, marbles: 5 }
 
+		def initialize
+			super
+			add_to_pocket(@@greg_pocket)
+		end
 
 		def do_good
 			puts "Good Guy Greg was born with a rare inflection - the ability to do only good."
@@ -42,22 +55,16 @@ class GoodGuyGreg < AbstractCharacter
 		def do_super_power
 			do_good
 		end
-
-		def steal_from_greg_pocket
-			greg_pocket.each do |item|
-				1.times (item).inject(ghost_pocket)
-			end
-		end
-
-		def steal
-			steal_from_greg_pocket
-		end
 end
 
 class MickeyTheStick < AbstractCharacter
 
-		mickey_pocket = { iPod: 200, keychain: 5, ring: 60 } 
-		add_pockets(mickey_pocket)
+		@@mickey_pocket = { iPod: 200, keychain: 5, ring: 60 } 
+		
+		def initialize
+			super
+			add_to_pocket(@@mickey_pocket)
+		end
 
 		def swing_bat
 			puts "Micky The Stick steps up to the proverbial plate and musters up some courage."
@@ -73,21 +80,16 @@ class MickeyTheStick < AbstractCharacter
 			swing_bat
 		end
 
-		def steal_from_mickey_pocket
-			mickey_pocket.each do |item|
-				1.times (item).inject(ghost_pocket)
-			end
-		end
-
-		def steal
-			steal_from_mickey_pocket
-		end
 end
 
 class JoeyBaggaDonuts < AbstractCharacter
 		
-	joey_pocket = { zune: 150, pog_collection: 45, donuts: 10 }
-	add_pockets(joey_pocket)
+	@@joey_pocket = { zune: 150, pog_collection: 45, donuts: 10 }
+		
+		def initialize
+			super
+			add_to_pocket(@@joey_pocket)
+		end
 
 		def eat_donuts
 			puts "Joey Bagga Donuts is only good at one thing: eating donuts."
@@ -100,16 +102,6 @@ class JoeyBaggaDonuts < AbstractCharacter
 
 		def do_super_power
 			eat_donuts
-		end
-
-		def steal_from_joey_pocket
-			joey_pocket.each do |item|
-				1. times (item).inject(ghost_pocket)
-			end
-		end
-
-		def steal
-			steal_from_joey_pocket
 		end
 end
 
