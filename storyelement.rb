@@ -93,9 +93,10 @@ class StoryElement
 			puts ""
 			puts ""
 
+			self.story.story_character.steal
 
 			print "But for some reason #{Story.name?}now only has "
-			self.story.story_character.show_pocket
+			print self.story.story_character.show_pocket
 
 			puts ""
 			puts ""
@@ -128,7 +129,13 @@ class StoryElement
 			puts ""
 			puts ""
 
-			puts "And #{name} says hi"
+			self.story.story_character.steal
+
+			puts "And the mystery continues, as #{Story.name?} now only has "
+			print self.story.story_character.show_pocket
+
+			puts ""
+			puts ""
 
 			response = Story.get_player_input_with_allowed_values("Super power time? If so, simply type 'super power' - if not, hit [enter].", ['', 'super power'])
 
@@ -149,7 +156,15 @@ class StoryElement
 
 			puts ""
 			puts "" 
+
+			self.story.story_character.steal
+
+			puts "And the mystery continues, as #{Story.name?} now only has "
+			print self.story.story_character.show_pocket
 			
+			puts ""
+			puts ""
+
 			response = Story.get_player_input_with_allowed_values("Story continues with an [enter] unless you choose to use your [super power]", ['', 'super power'])
 
 			if response == ""
@@ -166,6 +181,17 @@ class StoryElement
 			puts "Joey thinks it has to do with the camera, and tries to convince Greg as such."
 			puts "Greg is just too naive to see the writing on the walls, and proclaims that 'shit just happens sometimes dude.'"
 			puts "So that leaves a decision or two to be made."
+
+			puts ""
+			puts ""
+
+			self.story.story_character.steal
+
+			puts "Double WTF #{Story.name?} now only has "
+			print self.story.story_character.show_pocket
+
+			puts ""
+			puts ""
 
 			response = Story.get_player_input_with_allowed_values("Press [enter] to be shown what decision you have to make or use your [super power]", ['', 'super power'])
 

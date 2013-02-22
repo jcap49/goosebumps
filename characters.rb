@@ -6,6 +6,7 @@ class AbstractCharacter
 	attr_accessor :pocket
 
 	def initialize
+		@ghost_pocket = Hash.new
 		@pocket = @@average_pocket
 	end
 
@@ -16,9 +17,29 @@ class AbstractCharacter
 	# ghost needs to decrease quantity of each item in pocket to zero.
 	# this happens once per turn
 
-	def steal(pocket)
-		pocket.each do |thing,qty|
-			pocket(qty) == 0
+	def steal
+		# Get the first thing in the character's pocket that has a non-zero quantity
+		_thing = _qty = nil
+		@pocket.each do |thing,qty|
+			if qty > 0
+				_thing = thing
+				_qty = qty
+
+				# Zero out the qty.
+				@pocket[thing] = 0
+
+				break
+			end
+		end
+
+		# TODO for you - handle _thing being nil
+		return if _thing.nil?
+
+		# Move that qty. to the ghost pocket
+		if @ghost_pocket.has_key?(_thing)
+			@ghost_pocket[_thing] += _qty
+		else
+			@ghost_pocket[_thing] = _qty
 		end
 	end
 

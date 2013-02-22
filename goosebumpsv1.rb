@@ -16,7 +16,7 @@ class Array
       when 2
         "#{self[0]}#{default_two_words_connector}#{self[1]}"
       else
-        "#{self[0...-1].join(default_words_connector)}#{default_last_word_connector}#{self[-1]}"
+        "#{self[0...-1].join(default_words_connector)}#{default_last_word_connector}#{self[-1]}."
     end
   end
 end
